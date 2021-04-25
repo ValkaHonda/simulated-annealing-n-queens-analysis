@@ -1,0 +1,24 @@
+// @import "./theme";
+@import "~bootstrap/scss/bootstrap";
+
+.ReactChart {
+  margin-top: 40px;
+  max-height: 500px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.btn-to-open-modal {
+  margin-top: 30px;
+  margin-left: 40%;
+}
+
+.form-group {
+  margin-bottom: 0.6rem;
+}
+
+.btn-to-send-data {
+  text-align: center;
+}
