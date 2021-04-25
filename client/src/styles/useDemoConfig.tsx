@@ -45,13 +45,13 @@ export default function useChartConfig({
     grouping,
     snapCursor,
     datums,
-    data: makeDataFrom(series, inputData, seriesName),
+    data: makeDataFrom(inputData),
   });
 
   React.useEffect(() => {
     setState((old: any) => ({
       ...old,
-      data: makeDataFrom(series, inputData, seriesName),
+      data: makeDataFrom(inputData),
     }));
   }, [count, dataType, datums, series, useR, inputData, seriesName]);
 
@@ -60,22 +60,20 @@ export default function useChartConfig({
   };
 }
 
-function makeDataFrom(series: any, inputData: any, seriesName: string) {
-  const result = [...new Array(series)].map((d, i) =>
-    makeSeries(i, inputData, seriesName)
-  );
-
-  console.log({ result });
+function makeDataFrom(inputData: any) {
+  const result = [...inputData].map(makeSeries);
   return result;
 }
 
-function makeSeries(i: any, inputData: any, seriesName: string) {
+function makeSeries(inputData: any) {
+  const seriesName: string = inputData.n;
+  const coordinates: { x: string; y: string }[] = inputData.data;
   return {
-    label: seriesName,
-    data: inputData.map((input: any, i: number) => {
+    label: `Number of Queens: ${seriesName}`,
+    data: coordinates.map(({ x, y }) => {
       return {
-        primary: `${input.x}`,
-        secondary: `${input.y}`,
+        primary: `${x}`,
+        secondary: `${y}`,
       };
     }),
   };

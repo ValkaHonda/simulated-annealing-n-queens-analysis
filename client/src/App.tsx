@@ -43,16 +43,16 @@ const dataFromApiAdvanced = [
   {
     n: 8,
     coolingFactor: [
-      { x: 0, y: 21 },
-      { x: 10, y: 20 },
-      { x: 20, y: 20 },
-      { x: 30, y: 30 },
-      { x: 40, y: 60 },
-      { x: 50, y: 100 },
-      { x: 60, y: 150 },
-      { x: 70, y: 170 },
-      { x: 80, y: 180 },
-      { x: 90, y: 185 },
+      { x: 0, y: 31 },
+      { x: 10, y: 30 },
+      { x: 20, y: 40 },
+      { x: 30, y: 40 },
+      { x: 40, y: 70 },
+      { x: 50, y: 110 },
+      { x: 60, y: 160 },
+      { x: 70, y: 180 },
+      { x: 80, y: 190 },
+      { x: 90, y: 195 },
     ],
     temperature: [
       { x: 0, y: 21 },
@@ -82,10 +82,23 @@ const dataFromApi = [
   { x: 90, y: 185 },
 ];
 
+const groupBy = (parameterName: string) => (object: any) => ({
+  n: object.n,
+  data: object[parameterName],
+});
+
 function App() {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
+  const temperatureResults: any = dataFromApiAdvanced.map(
+    groupBy("temperature")
+  );
+  const coolingFactorResults: any = dataFromApiAdvanced.map(
+    groupBy("coolingFactor")
+  );
+  debugger;
 
   return (
     <div className="App container py-3">
@@ -142,7 +155,10 @@ function App() {
           </Form>
         </ModalBody>
       </Modal>
-      <CustomChart inputData={dataFromApi} seriesName="Initial Temperature" />
+      <CustomChart
+        inputData={coolingFactorResults}
+        seriesName="Initial Temperature"
+      />
     </div>
   );
 }
@@ -151,7 +167,6 @@ const CustomChart = (props: any) => {
   const { data } = useDemoConfig({
     series: 1,
     inputData: props.inputData,
-    seriesName: props.seriesName,
   });
 
   const axes = React.useMemo(
