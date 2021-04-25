@@ -367,7 +367,17 @@ function App() {
         </div>
       )}
       {!isFetching && temperatureResults && (
-        <CustomChart inputData={temperatureResults} />
+        <div className="temperature-chart">
+          <CustomChart inputData={temperatureResults} />
+        </div>
+      )}
+      {!isFetching && coolingFactorResults && (
+        <div
+          className="cooling-factor-chart"
+          style={{ display: "flex", marginTop: "180px" }}
+        >
+          <CustomChart inputData={coolingFactorResults} />
+        </div>
       )}
     </div>
   );
