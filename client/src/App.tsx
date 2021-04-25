@@ -98,7 +98,6 @@ function App() {
   const coolingFactorResults: any = dataFromApiAdvanced.map(
     groupBy("coolingFactor")
   );
-  debugger;
 
   return (
     <div className="App container py-3">
@@ -150,7 +149,19 @@ function App() {
               <Input type="number" name="coolingFactorStep" />
             </FormGroup>
             <div className="btn-to-send-data">
-              <Button color="success">Изследвай</Button>
+              <Button
+                onClick={() => {
+                  fetch(
+                    "http://localhost:8080/data?queensCountFrom=4&queensCountTo=8&tempFrom=120&tempTo=125&tempStep=1&coolingFactorFrom=0.95&coolingFactorTo=0.95&coolingFactorStep=1"
+                  )
+                    .then((res) => res.json())
+                    .then((receiveData) => console.log({ receiveData }))
+                    .catch((err) => console.log("FAILED REQUEST:", err));
+                }}
+                color="success"
+              >
+                Изследвай
+              </Button>
             </div>
           </Form>
         </ModalBody>
