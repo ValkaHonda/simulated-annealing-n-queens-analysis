@@ -363,7 +363,11 @@ function App() {
       </Modal>
       {isFetching && (
         <div className="custom-spinner">
-          <Spinner size="lg" color="primary" />
+          <Spinner
+            size="lg"
+            color="primary"
+            className="reactstrap-spinner-override"
+          />
         </div>
       )}
       {!isFetching && temperatureResults && (
