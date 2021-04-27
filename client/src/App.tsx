@@ -371,17 +371,25 @@ function App() {
         </div>
       )}
       {!isFetching && temperatureResults && (
-        <div className="temperature-chart">
-          <CustomChart inputData={temperatureResults} />
-        </div>
+        <>
+          <div className="temperature-chart">
+            <div className="y-axes-label">Брой итерации</div>
+            <CustomChart inputData={temperatureResults} />
+          </div>
+          <div className="x-axes-label">Начална Температура</div>
+        </>
       )}
       {!isFetching && coolingFactorResults && (
-        <div
-          className="cooling-factor-chart"
-          style={{ display: "flex", marginTop: "180px" }}
-        >
-          <CustomChart inputData={coolingFactorResults} />
-        </div>
+        <>
+          <div
+            className="cooling-factor-chart"
+            style={{ display: "flex", marginTop: "40px" }}
+          >
+            <div className="y-axes-label">Брой итерации</div>
+            <CustomChart inputData={coolingFactorResults} />
+          </div>
+          <div className="x-axes-label">Коефициент на Охлаждане</div>
+        </>
       )}
     </div>
   );
