@@ -146,8 +146,10 @@ function App() {
       : false);
 
   const isTempFromInvalid =
-    (isSubmitButtonClicked && !tempFrom) ||
+    (isSubmitButtonClicked && tempFrom === undefined) ||
     (isNumber(tempFrom) && isNumber(tempTo) ? tempFrom > tempTo : false);
+
+  debugger;
 
   const isTempToInvalid =
     (isSubmitButtonClicked && !tempTo) ||
@@ -158,7 +160,7 @@ function App() {
     (isNumber(tempStep) ? tempStep <= 0 : false);
 
   const isCoolingFactorFromInvalid =
-    (isSubmitButtonClicked && !coolingFactorFrom) ||
+    (isSubmitButtonClicked && coolingFactorFrom === undefined) ||
     (isNumber(coolingFactorFrom) && isNumber(coolingFactorTo)
       ? coolingFactorFrom > coolingFactorTo ||
         coolingFactorFrom < 0 ||
